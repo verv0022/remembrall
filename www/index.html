@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>rememberall</title>
+</head>
+
+<body>
+    <div class="app">
+
+        <section class="page" id="homePage">
+            <header>
+                <h1 id="brand">Remembrall</h1>
+                <h1 class="nav" id="addBtn" data-target="addPage">Add</h1>
+            </header>
+        <!-- <button id="btn">Add Notifcation</button> -->
+            <div id="listDiv">
+                <ul class="list">
+                </ul>
+            </div>
+        </section>
+
+        <section class="page" id="addPage">
+            <header>
+                <h1 class="nav" id="backBtn" data-target="homePage">Back </h1>
+                <h1>Add Reminder</h1>
+                <h1 id="saveBtn" data-target="addPage">Save</h1>
+            </header>
+
+            <input type="text" id="title" placeholder="Add title"/> <br>
+            <label for="">Enter Date:</label>
+            <input type="date" id="date" placeholder="Date"/> <br>
+            <label for="">Enter Time:</label>
+            <input type="time" id="time" placeholder="Time"/>
+
+        </section>
+
+
+
+
+
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
