@@ -1,5 +1,5 @@
 // Local Notifications:
-// https://www.npmjs.com/package/de.appplant.cordova.plugin.local-notification/v/0.8.5
+// https://www.npmjs.com/package/de.appplant.cordova.plugin.locordova plugin add de.appplant.cordova.plugin.local-notification@0.8.1cal-notification/v/0.8.5
 // https://github.com/katzer/cordova-plugin-local-notifications/wiki - reference
 // https://github.com/katzer/cordova-plugin-local-notifications - beware the ReadMe file. This is v0.9.0-beta
 
@@ -32,7 +32,7 @@ let app = {
     },
 
     addListeners: function () {
-        document.querySelector("#add-btn").addEventListener("click", app.addNote);
+        document.querySelector("#addBtn").addEventListener("click", app.addNote);
         cordova.plugins.notification.local.on("click", function (notification) {
             navigator.notification.alert("clicked: " + notification.id);
             //user has clicked on the popped up notification
@@ -71,7 +71,7 @@ let app = {
         let title = document.getElementById("title").value;
         let date = document.getElementById("date").value;
         let time = document.getElementById("time").value;
-        let id = new Date().getMilliseconds();
+       
         let timestamp = (selectedDate.valueOf() - (7 * 24 * 60 * 60 * 1000));
         let oneWeekAgo = new Date(timestamp);
 

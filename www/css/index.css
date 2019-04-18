@@ -1,8 +1,17 @@
+*{
+    padding: 0;
+    margin:0;
+    font-size: 17pt;
+}
 html{
     background-color:lightgrey;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 .page{
     display:none;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(
+        safe-area-inset-bottom
+      ) env(safe-area-inset-left);
 }
 .active{
     display:block
@@ -13,25 +22,43 @@ header{
     grid-template-columns: 1fr 3fr 1fr;
     grid-template-areas: "left center right";
     text-align: center;
-
     background-color: white;
+    padding: 10px 0px 20px 0;
+    font-size: 17pt;
+    
+   
 }
 
-#brand{
+.brand{
     grid-area: center;
+    font-size: 17pt;
+    font-weight: 600;
 }
 
 #addBtn{
     color: rgb(0,122,255);
     grid-area : right;
+    font-weight: normal;
+    margin-right:20px;
     
 }
 #backBtn{
     color: rgb(0,122,255);
     grid-area:left;
+    font-weight: normal;
+    margin-left:20px;
 }
 
 #saveBtn{
     color: rgb(0,122,255);
     grid-area: right;
+    font-weight: normal;
+    margin-right:20px;
+}
+
+.backArrow{
+    color: rgb(0,122,255); 
+    grid-area:left;
+    margin: 2px 40px 0 0;
+  
 }
