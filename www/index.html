@@ -2,13 +2,15 @@
 <html>
 
 <head>
-        <meta name="viewport"content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/; font-src 'self' data: https://fonts.gstatic.com/ https://fonts.googleapis.com/; 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/; font-src 'self' data: https://fonts.gstatic.com/ https://fonts.googleapis.com/; 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>rememberall</title>
 </head>
 
@@ -20,7 +22,7 @@
                 <h1 class="brand">Remembrall</h1>
                 <h1 class="nav" id="addBtn" data-target="addPage">Add</h1>
             </header>
-        <!-- <button id="btn">Add Notifcation</button> -->
+            <!-- <button id="btn">Add Notifcation</button> -->
             <div id="listDiv">
                 <ul class="list">
                 </ul>
@@ -32,15 +34,16 @@
                 <i class="backArrow material-icons">arrow_back_ios</i>
                 <h1 class="nav" id="backBtn" data-target="homePage">Back </h1>
                 <h1 class="brand"> Add Reminder</h1>
-                <h1 id="saveBtn" data-target="addPage">Save</h1>
+                <h1 class="nav" id="saveBtn" data-target="homePage">Save</h1>
             </header>
 
-            <input type="text" id="title" placeholder="Add title"/> <br>
-            <label for="">Enter Date:</label>
-            <input type="date" id="date" placeholder="Date"/> <br>
-            <label for="">Enter Time:</label>
-            <input type="time" id="time" placeholder="Time"/>
-
+            <section id="input">
+                <input type="text" id="title" placeholder="Add title" /> <br>
+                <label for="">Enter Date:</label>
+                <input type="date" id="date" placeholder="Date" /> <br>
+                <label for="">Enter Time:</label>
+                <input type="time" id="time" placeholder="Time" />
+            </section>
         </section>
 
 

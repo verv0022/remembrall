@@ -29,10 +29,11 @@ let app = {
     },
     ready: function () {
         app.addListeners();
+ 
     },
 
     addListeners: function () {
-        document.querySelector("#addBtn").addEventListener("click", app.addNote);
+        document.querySelector("#saveBtn").addEventListener("click", app.addNote);
         cordova.plugins.notification.local.on("click", function (notification) {
             navigator.notification.alert("clicked: " + notification.id);
             //user has clicked on the popped up notification
@@ -67,13 +68,20 @@ let app = {
     },
 
     addNote: function (ev) {
-        let props = cordova.plugins.notification.local.getDefaults();
-        let title = document.getElementById("title").value;
-        let date = document.getElementById("date").value;
-        let time = document.getElementById("time").value;
-       
-        let timestamp = (selectedDate.valueOf() - (7 * 24 * 60 * 60 * 1000));
-        let oneWeekAgo = new Date(timestamp);
+        let title = document.getElementById("title").value,
+            date = document.getElementById("date").value,
+            time = document.getElementById("time").value;
+
+           
+
+
+        let noteDate = new Date((date + " " + time).replace(/-/g, "/")).getTime(),
+            timestamp = (noteDate.valueOf() - (7 * 24 * 60 * 60 * 1000)),
+            oneWeekAgo = (timestamp),
+            inOneMin = new Date();
+            inOneMin.setMinutes(inOneMin.getMinutes() + 1),
+            id = new Date().getMilliseconds();
+
 
         //console.log(props);
         /**
@@ -87,9 +95,7 @@ let app = {
          * sound
          * badge
          */
-        let inOneMin = new Date();
-        inOneMin.setMinutes(inOneMin.getMinutes() + 1);
-        let id = new Date().getMilliseconds();
+
 
         let noteOptions = {
             id: id,
@@ -97,11 +103,54 @@ let app = {
             text: title,
             at: oneWeekAgo,
             badge: 1,
-            data: title + "" + date + "" + time
+            data: time + " " + date
         };
+
+        let listDiv = document.getElementById("listDiv");
+        let li = document.createElement("li");
+        li.setAttribute("class", "listItem");
+
+        let h1 = document.createElement('h1');
+        h1.textContent = title;
+
+        let noteTitle = document.createElement("p");
+        noteTitle.setAttribute("class", "noteTitle");
+        noteTitle.textContent = title;
 
         
 
+        let dateTime = document.createElement('p');
+        dateTime.setAttribute("class", "dateTime");
+        dateTime.textContent = noteOptions.data;
+
+
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "deleteBtn");
+        deleteBtn.textContent = "delete";
+        deleteBtn.addEventListener("click", app.showConfirm);
+
+
+
+        li.appendChild(deleteBtn);
+        li.appendChild(noteTitle);
+        li.appendChild(dateTime);
+        listDiv.appendChild(li);
+
+        
+
+        cordova.plugins.notification.local.schedule(noteOptions);
+        navigator.notification.alert("Added notification id " + id);
+        cordova.plugins.notification.local.isPresent(id, function (present) {
+
+        });
+
+        document.getElementById("title").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("time").value = "";
+
+        document.getElementById("addPage").classList.remove("active");
+        document.getElementById("homePage").classList.add("active");
         /**
          * if(props.icon){
           noteOptions.icon = './img/calendar-md-@2x.png'
@@ -113,27 +162,33 @@ let app = {
           noteOptions.actions = [{ id: "yes", title: "Do it" }, { id: "no", title: "Nah" }]
         }
         **/
-        cordova.plugins.notification.local.schedule(noteOptions, function (note) {
-            //this is the callback function for the schedule method
-            //this runs AFTER the notification has been scheduled.
-        });
+        // cordova.plugins.notification.local.schedule(noteOptions, function (note) {
+        //     //this is the callback function for the schedule method
+        //     //this runs AFTER the notification has been scheduled.
+        // });
 
-        navigator.notification.alert("Added notification id " + id);
+        // navigator.notification.alert("Added notification id " + id);
 
-        cordova.plugins.notification.local.cancel(id, function () {
-            // will get rid of notification id 1 if it has NOT been triggered or added to the notification center
-            // cancelAll() will get rid of all of them
-        });
-        cordova.plugins.notification.local.clear(id, function () {
-            // will dismiss a notification that has been triggered or added to notification center
-        });
-        cordova.plugins.notification.local.isPresent(id, function (present) {
-            // navigator.notification.alert(present ? "present" : "not found");
-            // can also call isTriggered() or isScheduled()
-            // getAllIds(), getScheduledIds() and getTriggeredIds() will give you an array of ids
-            // get(), getAll(), getScheduled() and getTriggered() will get the notification based on an id
-        });
+        // cordova.plugins.notification.local.cancel(id, function () {
+        //     // will get rid of notification id 1 if it has NOT been triggered or added to the notification center
+        //     // cancelAll() will get rid of all of them
+        // });
+        // cordova.plugins.notification.local.clear(id, function () {
+        //     // will dismiss a notification that has been triggered or added to notification center
+        // });
+        // cordova.plugins.notification.local.isPresent(id, function (present) {
+        //     // navigator.notification.alert(present ? "present" : "not found");
+        //     // can also call isTriggered() or isScheduled()
+        //     // getAllIds(), getScheduledIds() and getTriggeredIds() will give you an array of ids
+        //     // get(), getAll(), getScheduled() and getTriggered() will get the notification based on an id
+        // });
 
+    },
+
+
+    deleteNote: function () {
+        
     }
+
 };
 app.init();
