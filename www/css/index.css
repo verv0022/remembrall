@@ -108,3 +108,7 @@ header {
     font-size: 30pt;
     color:red;
 }
+
+input{
+    width:100%
+}

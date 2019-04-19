@@ -33,17 +33,17 @@ let app = {
     },
 
     addListeners: function () {
-       
+
         document.querySelector("#saveBtn").addEventListener("click", app.addNote);
-        cordova.plugins.notification.local.on("click", function (notification) {
-            navigator.notification.alert("clicked: " + notification.id);
-            //user has clicked on the popped up notification
-            console.log(notification.data);
-        });
-        cordova.plugins.notification.local.on("trigger", function (notification) {
-            //added to the notification center on the date to trigger it.
-            navigator.notification.alert("triggered: " + notification.id);
-        });
+    //     cordova.plugins.notification.local.on("click", function (notification) {
+    //         navigator.notification.alert("clicked: " + notification.id);
+    //         //user has clicked on the popped up notification
+    //         console.log(notification.data);
+    //     });
+    //     cordova.plugins.notification.local.on("trigger", function (notification) {
+    //         //added to the notification center on the date to trigger it.
+    //         navigator.notification.alert("triggered: " + notification.id);
+    //     });
     },
 
     pageSwitch: function () {
@@ -130,7 +130,7 @@ let app = {
         deleteBtn.setAttribute("class", "deleteBtn material-icons");
         deleteBtn.setAttribute("id", "deleteBtn");
         deleteBtn.textContent = "remove_circle";
-       
+        deleteBtn.addEventListener("click", app.confirmDelete);
 
 
 
@@ -139,10 +139,10 @@ let app = {
         li.appendChild(dateTime);
         listDiv.appendChild(li);
 
-
+        
 
         cordova.plugins.notification.local.schedule(noteOptions);
-        navigator.notification.alert("Added notification id " + id);
+        // navigator.notification.alert("Added notification id " + id);
         cordova.plugins.notification.local.isPresent(id, function (present) {
 
         });
@@ -187,7 +187,30 @@ let app = {
 
     },
 
+    deleteNote: function (currentTarget) {
+    li = currentTarget.parentElement;
+    li.remove(li.selectedIndex);
+    let targetElement = currentTarget;
+    dataId = targetElement.getAttribute("data-id");
+    console.log(dataId,"data id");
+    cordova.plugins.notification.local.cancel(dataId, function () {
+      console.log(dataId,"deleted");
+    });
+    },
     
+
+    confirmDelete: function (ev) {
+ 
+        let currentTarget = ev.currentTarget;
+        navigator.notification.confirm("Are you sure you want to delete?", (res) => {
+            if (res === 2) { 
+                app.deleteNote(currentTarget);
+            } else { 
+                console.log("clicked", res);
+            }
+        }, "Delete", ['Cancel', 'Confirm']);
+
+    },
 
     
 
