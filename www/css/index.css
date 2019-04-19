@@ -75,7 +75,7 @@ header {
 #listDiv {
     list-style: none;
     background-color: white;
-    border-bottom: 1px solid grey;
+
 
 
 }
@@ -87,6 +87,7 @@ header {
     grid-template-areas: ". . dateTime""deleteBtn noteTitle .";
     text-align: center;
     padding-bottom: 30px;
+    border-bottom: 1px solid grey;
 
 }
 
@@ -99,10 +100,11 @@ header {
     font-size: 10pt;
     font-weight: normal;
     color: grey;
+
 }
 
-.deleteBtn {
+#deleteBtn {
     grid-area: deleteBtn;
-    font-size: 12pt;
-    margin-right: 2em;
+    font-size: 30pt;
+    color:red;
 }

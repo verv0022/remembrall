@@ -29,10 +29,11 @@ let app = {
     },
     ready: function () {
         app.addListeners();
- 
+
     },
 
     addListeners: function () {
+       
         document.querySelector("#saveBtn").addEventListener("click", app.addNote);
         cordova.plugins.notification.local.on("click", function (notification) {
             navigator.notification.alert("clicked: " + notification.id);
@@ -72,14 +73,14 @@ let app = {
             date = document.getElementById("date").value,
             time = document.getElementById("time").value;
 
-           
+
 
 
         let noteDate = new Date((date + " " + time).replace(/-/g, "/")).getTime(),
             timestamp = (noteDate.valueOf() - (7 * 24 * 60 * 60 * 1000)),
             oneWeekAgo = (timestamp),
             inOneMin = new Date();
-            inOneMin.setMinutes(inOneMin.getMinutes() + 1),
+        inOneMin.setMinutes(inOneMin.getMinutes() + 1),
             id = new Date().getMilliseconds();
 
 
@@ -117,7 +118,7 @@ let app = {
         noteTitle.setAttribute("class", "noteTitle");
         noteTitle.textContent = title;
 
-        
+
 
         let dateTime = document.createElement('p');
         dateTime.setAttribute("class", "dateTime");
@@ -125,10 +126,11 @@ let app = {
 
 
 
-        let deleteBtn = document.createElement("button");
-        deleteBtn.setAttribute("class", "deleteBtn");
-        deleteBtn.textContent = "delete";
-        deleteBtn.addEventListener("click", app.showConfirm);
+        let deleteBtn = document.createElement("i");
+        deleteBtn.setAttribute("class", "deleteBtn material-icons");
+        deleteBtn.setAttribute("id", "deleteBtn");
+        deleteBtn.textContent = "remove_circle";
+       
 
 
 
@@ -137,7 +139,7 @@ let app = {
         li.appendChild(dateTime);
         listDiv.appendChild(li);
 
-        
+
 
         cordova.plugins.notification.local.schedule(noteOptions);
         navigator.notification.alert("Added notification id " + id);
@@ -185,10 +187,10 @@ let app = {
 
     },
 
+    
 
-    deleteNote: function () {
-        
-    }
+    
+
 
 };
 app.init();
