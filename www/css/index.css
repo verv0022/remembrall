@@ -109,6 +109,8 @@ header {
     color:red;
 }
 
-input{
-    width:100%
+form > input{
+    border-bottom:none;;
+    width: 100vh;
+
 }
